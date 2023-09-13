@@ -1,5 +1,68 @@
+import FeaturedMovie from "../components/FeaturedMovie";
+import { AiFillPlayCircle } from "react-icons/ai";
+import MovieGrid from "../components/MovieGrid";
+import {
+  HStack,
+  Heading,
+  Grid,
+  GridItem,
+  Box,
+  Image,
+  Text,
+  Button,
+} from "@chakra-ui/react";
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import useMovies from "../hooks/useMovies";
 const HomePage = () => {
-  return <div>HomePage</div>;
+  document.body.style.backgroundColor = "white";
+
+  const { data } = useMovies();
+  if (!data) return null;
+  const value = data.results[Math.floor(Math.random() * data.results.length)];
+
+  return (
+    <>
+      <Box marginBottom="20px" padding="20px" position={"relative"}>
+        <Image
+          src={`https://image.tmdb.org/t/p/w500/${value.poster_path}`}
+          width="100vw"
+          height="300px"
+          objectFit="fill"
+        />
+        <Box position="absolute" top="50%" left="80px" textAlign={"left"}>
+          <Button
+            backgroundColor="red.600"
+            textColor="white"
+            leftIcon={<AiFillPlayCircle />}
+          >
+            Watch Trailer
+          </Button>
+        </Box>
+      </Box>
+      <Grid
+        templateAreas={{ base: `"main"`, lg: `"featured main"` }}
+        templateRows={{ base: "1fr", lg: "200px 1fr" }}
+      >
+        <GridItem area="featured">{/* <FeaturedMovie />*/}</GridItem>
+        <GridItem area="main">
+          <HStack
+            textColor={"black"}
+            justifyContent="space-between"
+            padding="10px"
+          >
+            <Heading fontSize={"2xl"}>Featured Movie</Heading>
+            <HStack cursor="pointer">
+              <Heading fontSize={"md"} textColor={"red.600"}>
+                See more
+              </Heading>
+              <ChevronRightIcon color="red.600" />
+            </HStack>
+          </HStack>
+          <MovieGrid />
+        </GridItem>
+      </Grid>
+    </>
+  );
 };
 
 export default HomePage;

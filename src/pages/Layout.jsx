@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <Box height={"100vh"}>
+      <Box>
         <Outlet />
       </Box>
       <Footer />
