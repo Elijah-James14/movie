@@ -7,6 +7,7 @@ const MovieGrid = () => {
   console.log(data);
 
   if (!data) return null;
+
   return (
     <>
       <SimpleGrid
@@ -15,7 +16,8 @@ const MovieGrid = () => {
         padding="20px"
       >
         {isLoading && <Spinner />}
-        {data.results.splice(0, 11).map((movie) => {
+
+        {data.results.slice(0, 10).map((movie) => {
           return <MovieCard movie={movie} />;
         })}
       </SimpleGrid>
