@@ -1,4 +1,5 @@
 import { Circle, HStack, Heading } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { HiMenuAlt4 } from "react-icons/hi";
 
@@ -12,9 +13,12 @@ const Header = () => {
         position={"relative"}
         bg={"transparent"}
       >
-        <Heading as="h3" fontSize={"xl"} textColor="black">
-          MovieBox
-        </Heading>
+        <Link to="/">
+          <Heading as="h3" fontSize={"xl"} textColor="black">
+            MovieBox
+          </Heading>
+        </Link>
+
         <SearchBar />
         <HStack>
           <Heading as="h3" fontSize="md">

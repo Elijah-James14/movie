@@ -17,7 +17,7 @@ import {
 
 const Footer = () => {
   return (
-    <Center width="100vw" height="50px" padding="30px">
+    <Center width="100vw" height="50px" padding="30px" textColor="black">
       <VStack>
         <Box>
           <HStack spacing={"20px"}>

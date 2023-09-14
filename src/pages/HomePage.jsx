@@ -1,4 +1,3 @@
-import FeaturedMovie from "../components/FeaturedMovie";
 import { AiFillPlayCircle } from "react-icons/ai";
 import MovieGrid from "../components/MovieGrid";
 import {
@@ -13,6 +12,8 @@ import {
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import useMovies from "../hooks/useMovies";
+import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 const HomePage = () => {
   document.body.style.backgroundColor = "white";
 
@@ -29,21 +30,25 @@ const HomePage = () => {
           height="300px"
           objectFit="fill"
         />
-        <Box position="absolute" top="50%" left="80px" textAlign={"left"}>
-          <Button
-            backgroundColor="red.600"
-            textColor="white"
-            leftIcon={<AiFillPlayCircle />}
-          >
-            Watch Trailer
-          </Button>
+        <Box position="absolute" top="50%" left="70px" textAlign={"left"}>
+          <Link to={"/movies/" + value.id}>
+            {" "}
+            <Button
+              variant={"solid"}
+              backgroundColor="red.600"
+              _hover={{ backgroundColor: "red" }}
+              textColor="white"
+              leftIcon={<AiFillPlayCircle />}
+            >
+              Watch Trailer
+            </Button>
+          </Link>
         </Box>
       </Box>
       <Grid
         templateAreas={{ base: `"main"`, lg: `"featured main"` }}
         templateRows={{ base: "1fr", lg: "200px 1fr" }}
       >
-        <GridItem area="featured">{/* <FeaturedMovie />*/}</GridItem>
         <GridItem area="main">
           <HStack
             textColor={"black"}

@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://api.themoviedb.org/3/movie",
+  baseURL: "https://api.themoviedb.org/3",
   params: {
-    api_key: "ae5852a27bdabb9c78906eb55d39e874",
+    api_key: import.meta.env.VITE_API_KEY,
   },
 });
 
@@ -12,8 +12,12 @@ class APIClient {
     this.endpoint = endpoint;
   }
 
-  getMovies = () => {
-    return axiosInstance.get(this.endpoint).then((res) => res.data);
+  getMovies = (config) => {
+    return axiosInstance.get(this.endpoint, config).then((res) => res.data);
+  };
+
+  getSingleMovie = (id) => {
+    return axiosInstance.get(this.endpoint + "/" + id).then((res) => res.data);
   };
 }
 export default APIClient;
