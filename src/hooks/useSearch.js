@@ -1,8 +1,7 @@
 import APIClient from "../services/api-client";
 import { useQuery } from "@tanstack/react-query";
-
+const apiClient = new APIClient("/search/movie");
 const useSearch = (searchTerm) => {
-  const apiClient = new APIClient("/search/movie");
   return useQuery({
     queryKey: ["searches", searchTerm],
     queryFn: () =>

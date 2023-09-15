@@ -11,7 +11,6 @@ const Layout = () => {
       <Box>
         <Outlet />
       </Box>
-      <Footer />
     </>
   );
 };

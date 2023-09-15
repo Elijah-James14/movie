@@ -3,10 +3,13 @@ import MovieCard from "./MovieCard";
 import useMovies from "../hooks/useMovies";
 
 const MovieGrid = () => {
-  const { data, isLoading, error } = useMovies();
-  console.log(data);
+  const { data, isLoading, isError } = useMovies();
+
+  const skeletons = [1, 2, 3, 4, 5, 6];
 
   if (!data) return null;
+
+  if (isError) return <Text>There is something wrong</Text>;
 
   return (
     <>
@@ -15,7 +18,10 @@ const MovieGrid = () => {
         spacing="30px"
         padding="20px"
       >
-        {isLoading && <Spinner />}
+        {isLoading &&
+          skeletons.map((s) => {
+            return <MovieCardSkeleton key={s} />;
+          })}
 
         {data.results.slice(0, 10).map((movie) => {
           return <MovieCard movie={movie} />;

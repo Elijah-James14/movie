@@ -12,14 +12,14 @@ import {
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import useMovies from "../hooks/useMovies";
-import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 const HomePage = () => {
   document.body.style.backgroundColor = "white";
 
-  const { data } = useMovies();
+  const { data, isError } = useMovies();
   if (!data) return null;
   const value = data.results[Math.floor(Math.random() * data.results.length)];
+  if (isError) return <Text>There is something wrong.</Text>;
 
   return (
     <>
